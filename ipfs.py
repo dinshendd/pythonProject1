@@ -13,7 +13,7 @@ def pin_to_ipfs(data):
     }
 
     response = requests.post(endpoint + '/api/v0/add', files=files, auth=(projectID, projectSecret))
-    print(response.text)
+
     cid = response.text.split(",")[1].split(":")[1].replace('"', '')
     return cid
 
