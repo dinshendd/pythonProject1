@@ -8,7 +8,11 @@ def pin_to_ipfs(data):
     projectSecret = "1cc5f367c0b20a043728edeb9a8a280f"
     endpoint = "https://ipfs.infura.io:5001"
 
-    files = json.dumps(data, indent=2)
+    datastr = str(data)
+
+    files = {
+        'file': datastr
+    }
 
     response = requests.post(endpoint + '/api/v0/add', files=files, auth=(projectID, projectSecret))
 
