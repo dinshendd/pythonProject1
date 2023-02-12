@@ -21,8 +21,20 @@ def pin_to_ipfs(data):
 
 
 def get_from_ipfs(cid,content_type="json"):
-	assert isinstance(cid,str), f"get_from_ipfs accepts a cid in the form of a string"
-	#YOUR CODE HERE
+    assert isinstance(cid, str), f"get_from_ipfs accepts a cid in the form of a string"
+    # YOUR CODE HERE
+    projectID = "2LYvv1bvjzxvILIxXGZzKejuMeQ"
+    projectSecret = "1cc5f367c0b20a043728edeb9a8a280f"
+    endpoint = "https://ipfs.infura.io:5001"
 
-	assert isinstance(data,dict), f"get_from_ipfs should return a dict"
-	return data
+    params = {
+        'arg': cid
+    }
+
+    response2 = requests.post(endpoint + '/api/v0/cat', params=params, auth=(projectID, projectSecret))
+
+    data = json.loads(response2.text)
+
+    assert isinstance(data,dict), f"get_from_ipfs should return a dict"
+
+    return data
